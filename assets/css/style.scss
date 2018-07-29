@@ -1,0 +1,81 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	color: #000000;
+	font-family: Quicksand;
+}
+header {
+    margin: 0;
+}
+header h1 {
+    font-size: 18pt;
+}
+nav {
+    margin: 22px 0 0 0;
+    padding: 0 0 0 2%;
+}
+nav a {
+    font-size: 10pt;
+    margin: 40px 10px 0 0;
+    color: black;
+}
+
+header .icons a {
+    margin: 22px 10px 0 0;
+    float: right;
+}
+
+header .icons img {
+    height: 16px;
+
+}
+header a:hover {
+    color: #666;
+    text-decoration: none;
+}
+footer {
+    font-size: 10pt;
+    color: #666;
+    text-align: center;
+}
+
+div.content {
+	padding: 20px;
+}
+
+.content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+section {
+  min-width: 80%;
+  padding: 2% 0 3px;
+  display: table;
+  margin: 0;
+  max-width: none;
+  background-color: #efefef;
+  height: 70vh;
+}
+.second {
+    background: #fff;
+}
+section h1 {
+    font-size: 16pt;
+}
+section h2 {
+    font-size: 14pt;
+}
+
+.center {
+    text-align: center
+}
+.cv {
+    margin: 40px 0 0 40px;
+}
+.profilePic {
+    padding: 2% 0 0 0;
+}
+.profilePic img {
+    margin-top: 50px;
+}
