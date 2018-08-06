@@ -6,48 +6,49 @@
     {% include header.html %}
 
     <body>
-        <aside>
-            <div class="profilePic center">
-                <div class="pointer"><div class="arrow"></div><span>I'm here</span></div>
+        <div class="wrapper">
+            <aside>
+                <div class="profilePic center">
+                    <div class="pointer"><div class="arrow"></div><span>I'm here</span></div>
                     <img src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/33614545_10216924903455312_3155502675550797824_n.jpg?_nc_cat=0&oh=59c910196b12a8b095dfbe5aa346af9a&oe=5BD6B999" width="120" />
                 </div>
-            </div>
-            <p>A software developer with 10+ years of experience in php, node.js, java and ruby.</p>
-            <nav>
-                <a href="/#experience">Work Experience</a>
-                <a href="/#education">Education</a>
-                <a href="/#vision">Vision</a>
-                <a href="/#technologies">Technologies</a>
-            </nav>
-            <div class="blogpost">
-                <h1>Recents blogposts</h1>
-                {% for post in site.posts limit:5 %}
-                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }} </a>
-                {% endfor %}
-            </div>
-            <div class="icons">
-                <a href="https://github.com/georgialexandrov" target="_blank"><img src="{{ "/assets/img/github.svg" }}" /></a>
-                <a href="https://www.linkedin.com/in/georgialexandrov/" target="_blank"><img src="{{ "/assets/img/linkedin.svg" }}" /></a>
-            </div>
-        </aside>
-        <main>
-            {{ content }}
+                <p>A software developer with 10+ years of experience in php, node.js, java and ruby.</p>
+                <nav>
+                    <a class="{% if '/work-experience' == page.url %}active{% endif %}" href="/work-experience">Work Experience</a>
+                    <a class="{% if '/education' == page.url %}active{% endif %}" href="/education">Education</a>
+                    <a class="{% if '/technologies' == page.url %}active{% endif %}" href="/technologies">Technologies</a>
+                    <a class="{% if '/' == page.url %}active{% endif %}" href="/">Blog</a>
+                </nav>
+                <div class="blogpost">
+                    <h1>Recents blogposts</h1>
+                    {% for post in site.posts limit:5 %}
+                    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }} </a>
+                    {% endfor %}
+                </div>
+                <div class="icons">
+                    <a href="https://github.com/georgialexandrov" target="_blank"><img src="{{ "/assets/img/github.svg" }}" /></a>
+                    <a href="https://www.linkedin.com/in/georgialexandrov/" target="_blank"><img src="{{ "/assets/img/linkedin.svg" }}" /></a>
+                </div>
+            </aside>
+            <main>
+                {{ content }}
 
-            <hr />
-            {% include footer.html %}
+                <hr />
+                {% include footer.html %}
 
-            <script type="text/javascript">
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-38379843-1']);
-                _gaq.push(['_trackPageview']);
-        
-                (function () {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-        
-            </script>
-        </main>
+                <script type="text/javascript">
+                    var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-38379843-1']);
+                    _gaq.push(['_trackPageview']);
+            
+                    (function () {
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                    })();
+            
+                </script>
+            </main>
+        </div>
     </body>
 </html>

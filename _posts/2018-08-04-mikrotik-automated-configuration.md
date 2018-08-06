@@ -2,6 +2,7 @@
 layout: post
 title: MikroTik automated configuration
 date: 2018-08-04 23:58 +0300
+tags: [mikrotik, automation]
 ---
 
 This post will show configuration I tested on MikroTik hAP ac2, but all MikroTik routers are using RouterOS so there should be no difference.

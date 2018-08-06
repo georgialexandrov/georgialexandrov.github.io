@@ -2,30 +2,49 @@
 layout: page
 ---
 
-{%- if page.title -%}
-<h1 class="page-heading">{{ page.title }}</h1>
-{%- endif -%}
+<h1 class="page-heading">Georgi Alexandrov's blog</h1>
 
 {{ content }}
 
 {%- if site.posts.size > 0 -%}
-<h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-<ul class="post-list">
-    {%- for post in site.posts -%}
-    <li>
-    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-    <span class="post-meta">{{ post.date | date: date_format }}</span>
-    <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
-        {{ post.title | escape }}
-        </a>
-    </h3>
-    {%- if site.show_excerpts -%}
-        {{ post.excerpt }}
+{%- for post in site.posts -%}
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+
+            <span class="post-meta">
+          {{ post.date |date_to_long_string }} | {{ post.content | number_of_words | divided_by: 150}} minute read 
+          </span>
+      </time>
+      <h1 class="post-title p-name" itemprop="name headline">
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+            </a>
+        </h1>
+      
+      
+      {% if page.categories %}
+      <div class="tags">
+        🏷️ {% for tag in page.tags %}
+            {{ tag }}
+          {% endfor %}
+      </div>
+      {% endif %}
+        
+    </header>
+  
+    <div class="post-content e-content" itemprop="articleBody">
+            {{ post.content | split : ". " | first | strip_html }} ...
+    </div>
+  
+    {%- if site.disqus.shortname -%}
+      {%- include disqus_comments.html -%}
     {%- endif -%}
-    </li>
-    {%- endfor -%}
-</ul>
+  
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </article>
+  {%- endfor -%}
 
 <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
 {%- endif -%}
