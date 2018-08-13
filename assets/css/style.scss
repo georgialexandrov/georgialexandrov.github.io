@@ -10,7 +10,7 @@ $dark-grey: #666;
 $red: #ce463c;
 
 body {
-	color: #000000;
+	color: #333;
     font-family: $font-regular;
     font-size: 1em;
     margin: 0;
@@ -84,7 +84,8 @@ aside {
         text-align: center;
         margin: 4em 0;
         a {
-            font-size: 1.2em;
+            font-size: 1.1em;
+            font-weight: lighter;
             color: black;
             text-decoration: none;
             text-align: right;
@@ -140,7 +141,7 @@ footer {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 1.6em;
     line-height: 0.8em;
 }
 
@@ -190,10 +191,6 @@ hr {
 
 article {
     margin: 2em 0;
-
-    h1 {
-        line-height: 0;
-    }
 }
 .tags {
     color: $subtitle;
@@ -216,6 +213,11 @@ article {
             a {
                 display: inline;
                 text-align: center;
+            }
+
+            a:hover, a.active {
+                border-right: 0;
+                border-bottom: 2px $red solid;
             }
         }
     }

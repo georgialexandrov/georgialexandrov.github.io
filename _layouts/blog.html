@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<h1 class="page-heading">Georgi Alexandrov's blog</h1>
+<h1 class="page-heading">Georgi Alexandrov's blog (work in progress)</h1>
 
 {{ content }}
 
@@ -12,7 +12,6 @@ layout: page
 
     <header class="post-header">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-
             <span class="post-meta">
           {{ post.date |date_to_long_string }} | {{ post.content | number_of_words | divided_by: 150}} minute read 
           </span>
@@ -22,16 +21,6 @@ layout: page
             {{ post.title | escape }}
             </a>
         </h1>
-      
-      
-      {% if page.categories %}
-      <div class="tags">
-        🏷️ {% for tag in page.tags %}
-            {{ tag }}
-          {% endfor %}
-      </div>
-      {% endif %}
-        
     </header>
   
     <div class="post-content e-content" itemprop="articleBody">
