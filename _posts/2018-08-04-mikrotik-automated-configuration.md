@@ -1,13 +1,13 @@
 ---
 layout: post
-title: MikroTik automated configuration
+title: MikroTik automated configuration part 1
 date: 2018-08-04 23:58 +0300
 tags: [mikrotik, automation]
 ---
 
 This post is showing configuration I use on MikroTik hAP ac2, but all MikroTik routers are using RouterOS so there should be no difference.
 
-![ScreenShot ](/assets/posts/img/hap-ac.png "MikroTik hAP ac 2")
+![MikroTik hAP ac 2 ](/assets/posts/img/hap-ac.png "MikroTik hAP ac 2")
 
 For me, router configuration is a boring task. Especially when I am trying to do something fast and stupid mistake leads to the need for a hard reset.
 A few months ago I made such mistake several times when I was trying to configure NAT rule on port 80. I had my domain pointing to my public IP which redirects the traffic to my [Intel NUC](https://en.wikipedia.org/wiki/Next_Unit_of_Computing){:target="_blank"}.
@@ -112,59 +112,4 @@ All good! When the router receives request on port 80 from the WAN interface the
 /ip firewall nat add chain=srcnat action=masquerade protocol=tcp src-address=[NETWORK] dst-address=[LOCAL IP] out-interface=bridge dst-port=[PORTS]
 {% endhighlight %}
 
-The goal is achieved. I have automated configuration and router setup takes about 1 second. I added everything in a script with placeholders in my [GitHub account](https://github.com/georgialexandrov/dotfiles/blob/master/router_configuration){:target="_blank"}.
-
-For easy execution I wrote simple node.js script for replacing the placeholders with values from JSON file I keep stored in private repo and cloned in `~/.config/dotfiles`.
-{% highlight js %}
-const fs = require('fs');
-let arg = process.argv[2];
-
-const config = require(`${process.env.HOME}/.config/dotfiles/config.json`)
-
-var data = fs.readFileSync(`./${arg}`,"utf8");
-console.log(eval('`'+data+'`'))
-{% endhighlight %}
-
-The complete (at least for the routed) `config.json` looks like this:
-{% highlight json %}
-{
-    "mikrotik": {
-        "webfig_port": 81,
-        "mac_address": "AA-BB-CC-DD-EE-FF",
-        "ip_address": "111.111.111.111",
-        "subnet_mask": 26,
-        "wan_interface": "ether1",
-        "gateway": "111.111.111.111",
-        "dns_servers": "1.1.1.1,8.8.8.8",
-        "nat_destination_ip": "192.168.88.2",
-        "tcp_nat": [22, 80, 443],
-        "udp_nat": [1194],
-        "default_username": "admin",
-        "default_ip": "192.168.88.1",
-        "main_wifi": {
-            "ssid": "SECURED NETWORK",
-            "security_profile": "secured-profile",
-            "password": "abcd...(kidding,should-be-more-secure)"
-        },
-        "guest_wifi": {
-            "ssid": "GUEST NETWORK",
-            "security_profile": "guest",
-            "password": "kittens"
-        },
-        "dhcp_static": [
-            {
-                "ip": "192.168.88.2",
-                "mac": "BB:CC:DD:EE:FF:GG",
-                "comment": "nuc"
-            }
-        ]
-    }
-}
-{% endhighlight %}
-
-Now I simply run:
-{% highlight bash %}
-node replacer.js router_configuration | bash
-{% endhighlight %}
-
-Works fine. Almost. There are two wireless networks with different passwords, but they have the same access to the local network and this is not ok. I'll cover how to create two logical networks in part2 of this blog post.
+Works fine. Almost. There are two wireless networks with different passwords, but they have the same access to the local network and this is not ok. I cover how to create two logical networks in the [second part]({% post_url 2018-08-14-mikrotik-automated-configuration-part-2 %}) of this blog post.
