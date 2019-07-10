@@ -2,6 +2,7 @@
 layout: page
 title: Georgi Alexandrov
 permalink: /technologies
+style: static
 ---
 
 # Technologies
@@ -14,6 +15,7 @@ During my experience, I worked with php, node.js, and java. I also supported man
 - **React** is what I choose when I need front end;
 - **Redux** with React is like Batman and Robin;
 - **Immutable** saves me when working with Redux;
+
 ## PHP
 
 - **cakePHP** was the first framework I used for php;

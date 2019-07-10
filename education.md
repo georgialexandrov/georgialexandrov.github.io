@@ -2,6 +2,7 @@
 layout: page
 title: Georgi Alexandrov
 permalink: /education
+style: static
 ---
 
 # Education

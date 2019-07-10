@@ -1,7 +1,8 @@
 ---
 ---
 @import 'code_theme.scss';
-$font-regular: 'Quicksand';
+$font-title: 'EB Garamond';
+$font-regular: 'Hind';
 $font-handwritten: 'Gaegu';
 $font-source-code: 'Source Code Pro';
 $light-grey: #fbfbfb;
@@ -12,30 +13,7 @@ $red: #ce463c;
 body {
 	color: #333;
     font-family: $font-regular;
-    font-size: 1em;
     margin: 0;
-
-    .biskviti {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 0 0.5em 0.5em 0;
-        font-size: 1.5em;
-        cursor: pointer;
-        text-align: right;
-
-        span {
-            display: none;
-        }
-
-    }
-    .biskviti:hover {
-        border: solid $red;
-        border-width: 1px 0 0;
-        span {
-            display: inline;
-        }
-    }
 }
 
 .wrapper {
@@ -48,33 +26,22 @@ body {
 
 aside {
     background-color: $light-grey;
-    vertical-align: middle;
-    padding: 0 2em;
     text-align: center;
+    min-width: 300px;
     min-height: 100vh;
     grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
 
-    a {
-        line-height: 1.5em;
-        display: block;
-    }
+    a { display: block; }
+    p { font-size: 0.9em; color: $subtitle; margin: 2em; }
 
-    h1 {
-        font-size: 1.2em;
-    }
-    p {
-        font-size: 0.9em;
-        color: $subtitle;
-        text-align: center;
-        margin: 2em 0 0 0;
-    }
     .profilePic {
-        margin-top: 50px;
+        margin-top: 5em;
         padding: 0;
-        img {
-            border-radius: 50%;
-            margin-top: -30px;
-        }
+        justify-content: normal;
+        img {  border-radius: 50%; margin-top: -30px; }
+
         .pointer{
             width: 90px;
             margin: auto;
@@ -103,8 +70,6 @@ aside {
         }
     }
     nav {
-        text-align: center;
-        margin: 4em 0;
         a {
             font-size: 1.1em;
             font-weight: lighter;
@@ -113,40 +78,35 @@ aside {
             text-align: right;
             text-transform: uppercase;
             padding-right: 0.2em;
+            line-height: 1.8em;
+            margin-right: 3px;
         }
 
         a:hover {
             text-decoration: none;
             border-right: 3px $red solid;
             padding-right: 0.2em;
+            margin-right: 0;
         }
 
         a.active {
             text-decoration: none;
             border-right: 3px $red solid;
             padding-right: 0.2em;
+            margin-right: 0;
         }
     }
 
-    .icons {
-        text-align: center;
-        margin: 2em 0;
-        img {
-            width: 25px;
-        }
+    .social-links {
+        margin: 1em 0;
         a {
             display: inline;
-        }
-    }
-
-    div.blogpost {
-        a {
-            display: block;
+            img { height: 20px;}
         }
     }
 }
 main {
-    padding: 2em 3em 0 3em;
+    padding: 4em 3em 0 3em;
     grid-area: content;
     img {
         max-width: 100%;
@@ -160,39 +120,36 @@ footer {
     color: $dark-grey;
     text-align: center;
     margin: 1em 0;
+    margin-top: 4em;
+    a { text-decoration: none; }
 }
 
 h1 {
-    font-size: 1.6em;
-    line-height: 0.8em;
+    font-family: $font-title;
+    line-height: 1em;
+    border-bottom: 3px $red solid;
+    margin-bottom: 0;
+    font-size: 2.77em;
 }
 
-h2 {
-    font-size: 1.2em;
-}
+h2 {  font-size: 1.2em; }
 
 ul {
     list-style: none;
 	li::before {
-		content: "●";
+        content: "–";
+        font-weight: bold;
         color: $red;
 		margin-right: 1em;
 		margin-left: 0;
 	}
 }
 
-a {
-    color: $red;
-}
+a { color: #666; }
 
-a:hover {
-    text-decoration: none;
-}
+a:hover { text-decoration: none; }
 
-hr {
-    border: 0;
-    border-bottom: 1px solid #efefef;
-}
+hr { border: 0; border-bottom: 1px solid #efefef; }
 
 
 .highlight {
@@ -211,15 +168,85 @@ hr {
 
 }
 
-article {
-    margin: 2em 0;
-}
-.tags {
-    color: $subtitle;
+.static {
+    .companies {
+        display: flex;
+        flex-direction: column;
+
+        .date {
+            font-family: 'EB Garamond';
+            background: $red;
+            font-size: 0.9em;
+            color: white;
+            width: 5em;
+            text-align: center;
+            padding: 0.2em;
+        }
+        
+        .company {
+            display: flex;
+            flex-direction: row;
+            
+            .period {
+                flex: 1;
+                border-left: 2px dashed $red;
+                margin-left: 2.6em;
+            }
+            
+            .description {
+                flex: 10;
+
+                h2 { font-size: 1.6em; margin-top: 0; }
+
+                .technologies {
+                    font-family: 'EB Garamond';
+                    text-align: right;
+                    margin-left: 30%;
+                    .tech {
+                        background: $dark-grey;
+                        white-space: nowrap; 
+                        color: white;
+                        line-height: 1.6em;
+                        margin: 0 0.1em;
+                        padding: 0 0.5em;
+                    }
+                }
+            }
+        }
+    }
 }
 
-@media (max-width: 800px) {
+.post-header {
+    .post-title { font-family: $font-title; }
+    .post-info {
+        text-align: right;
+        .dt-published {
+            background: $red;
+            color: white;
+            font-weight: bold;
+            padding: 0.2em;
+            font-family: 'EB Garamond'
+        }
+        .tags {
+            margin-right: 200px;
+        }
+    }
+}
+.blog {
+    a { text-decoration: none; }
+    .post-header { 
+        margin: 1em 0 2em 0;
+        a { color: black; font-size: 2em; display: block; }
+    }
+    .post-content {
+        a { color: $red; }
+    }
+}
+
+
+@media (max-width: 950px) {
     .wrapper {
+        flex-direction: row;
         grid-template-columns: 1fr;
         grid-template-areas:
         "sidebar"
@@ -227,27 +254,14 @@ article {
             
     }
     aside {
-        width: 100%;
         min-height: auto;
         padding: 0;
 
         nav {
-            a {
-                display: inline;
-                text-align: center;
-            }
-
-            a:hover, a.active {
-                border-right: 0;
-                border-bottom: 2px $red solid;
-            }
+            a { display: inline; text-align: center; }
+            a:hover, a.active { border-right: 0; border-bottom: 2px $red solid; }
         }
     }
 
-    main {
-        padding: 1em;
-    }
-    .biskviti {
-        display: none;
-    }
+    main { padding: 1em; }
 }

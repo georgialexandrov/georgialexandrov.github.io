@@ -2,21 +2,20 @@
 layout: page
 ---
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
   <header class="post-header">
-    <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date |date_to_long_string }}
-    </time>
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    
-    {% if page.categories %}
-    <div class="tags">
-      🏷️ {% for tag in page.tags %}
-          {{ tag }}
+    <div class="post-info">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date |date_to_long_string }}
+      </time>
+      {% if false && page.categories %}
+      <div class="tags">
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
         {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
-      
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">

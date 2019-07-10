@@ -2,29 +2,26 @@
 layout: page
 ---
 
-<h1 class="page-heading">Georgi Alexandrov's blog (work in progress)</h1>
+<h1>Blog</h1>
 
-{{ content }}
+<p>A place for practicing my writing skills</p>
 
 {%- if site.posts.size > 0 -%}
+<div class="blog">
 {%- for post in site.posts -%}
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
     <header class="post-header">
+      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
             <span class="post-meta">
           {{ post.date |date_to_long_string }} | {{ post.content | number_of_words | divided_by: 150}} minute read 
           </span>
       </time>
-      <h1 class="post-title p-name" itemprop="name headline">
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-            </a>
-        </h1>
     </header>
   
     <div class="post-content e-content" itemprop="articleBody">
-            {{ post.content | split : ". " | first | strip_html }} ...
+        {{ post.content | split : ". " | first | strip_html }} <a href="{{ post.url | relative_url }}">... </a>
     </div>
   
     {%- if site.disqus.shortname -%}
@@ -35,5 +32,6 @@ layout: page
   </article>
   {%- endfor -%}
 
-<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+<!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p> -->
+</div>
 {%- endif -%}

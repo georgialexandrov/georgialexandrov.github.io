@@ -5,40 +5,30 @@
 
     {% include header.html %}
 
-    <body>
+    <body class="{% if page.style %}{{ page.style }} {% endif %}">
         <div class="wrapper">
             <aside>
-                <div class="profilePic center">
+                <div class="profilePic">
                     <div class="pointer"><div class="arrow"></div><span>I'm here</span></div>
                     <a href="/"><img src="/assets/img/avatar.jpg" width="120" /></a>
                 </div>
                 <p>A software developer with 10+ years of experience in php, node.js, java and ruby.</p>
+                <div class="social-links">
+                    <a href="https://github.com/georgialexandrov" target="_blank"><img src="{{ "/assets/img/github_solid.svg" }}" /></a>
+                    <a href="https://www.linkedin.com/in/georgialexandrov/" target="_blank"><img src="{{ "/assets/img/linkedin_solid.svg" }}" /></a>
+                    <a href="https://twitter.com/galexandrov87/" target="_blank"><img src="{{ "/assets/img/twitter_solid.svg" }}" /></a>
+                </div>
                 <nav>
                     <a class="{% if '/work-experience' == page.url %}active{% endif %}" href="/work-experience">Work Experience</a>
                     <a class="{% if '/education' == page.url %}active{% endif %}" href="/education">Education</a>
                     <a class="{% if '/technologies' == page.url %}active{% endif %}" href="/technologies">Technologies</a>
                     <a class="{% if '/' == page.url or  'post' == page.layout %}active{% endif %}" href="/">Blog</a>
                 </nav>
-                <div class="blogpost">
-                    <h1>Recents blogposts</h1>
-                    {% for post in site.posts limit:5 %}
-                    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }} </a>
-                    {% endfor %}
-                </div>
-                <div class="icons">
-                    <a href="https://github.com/georgialexandrov" target="_blank"><img src="{{ "/assets/img/github.svg" }}" /></a>
-                    <a href="https://www.linkedin.com/in/georgialexandrov/" target="_blank"><img src="{{ "/assets/img/linkedin.svg" }}" /></a>
-                </div>
             </aside>
             <main>
                 {{ content }}
 
-                <hr />
                 {% include footer.html %}
-                <div class="biskviti">
-                    <span>This website respects your privacy which means no cookies, no Google Analytics, no social media buttons</span>
-                    🍪
-                </div>
             </main>
         </div>
     </body>
