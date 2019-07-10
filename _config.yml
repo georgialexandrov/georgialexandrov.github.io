@@ -24,7 +24,7 @@ github_username:  georgialexandrov
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-minimal
+theme: jekyll-theme-dinky
 plugins:
   - jekyll-feed
 # Sass settings
