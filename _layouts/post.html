@@ -8,13 +8,6 @@ layout: page
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ page.date |date_to_long_string }}
       </time>
-      {% if false && page.categories %}
-      <div class="tags">
-        {% for tag in page.tags %}
-        <span class="tag">{{ tag }}</span>
-        {% endfor %}
-      </div>
-      {% endif %}
     </div>
   </header>
 
