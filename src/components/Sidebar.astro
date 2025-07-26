@@ -1,0 +1,41 @@
+---
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+---
+
+<aside>
+  <div class="profilePic">
+    <div class="pointer">
+      <div class="arrow"></div>
+      <span>I'm here</span>
+    </div>
+    <a href="/"><img src="/assets/img/avatar.jpg" width="120" /></a>
+  </div>
+  <p>A software developer with 10+ years of experience in php, node.js, java and ruby.</p>
+  <div class="social-links">
+    <a href="https://github.com/georgialexandrov" target="_blank"><img src="/assets/img/github_solid.svg" /></a>
+    <a href="https://www.linkedin.com/in/georgialexandrov/" target="_blank"><img src="/assets/img/linkedin_solid.svg" /></a>
+    <a href="https://twitter.com/galexandrov87/" target="_blank"><img src="/assets/img/twitter_solid.svg" /></a>
+  </div>
+  <nav>
+    <a href="/work-experience" 
+       class={currentPath === '/work-experience' ? 'active' : ''}>
+      Work Experience
+    </a>
+    <a href="/education" 
+       class={currentPath === '/education' ? 'active' : ''}>
+      Education
+    </a>
+    <a href="/technologies" 
+       class={currentPath === '/technologies' ? 'active' : ''}>
+      Technologies
+    </a>
+    <a href="/" 
+       class={currentPath === '/' || currentPath?.startsWith('/blog') ? 'active' : ''}>
+      Blog
+    </a>
+  </nav>
+</aside>

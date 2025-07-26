@@ -1,5 +1,4 @@
 ---
-layout: post
 title: MikroTik automated configuration part 2
 date: 2018-08-14 21:15 +0300
 tags: [mikrotik, automation]
@@ -21,14 +20,14 @@ That's why I want to create one Virtual LAN (VLAN) in another network with anoth
 ![Network diagram ](/assets/posts/img/VLan.png "Network diagram")
 
 First I defined a new bridge for the guest network. The bridge allows hosts from different networks to connect. In my case I want the WAN port to connect to VLAN network.
-{% highlight bash %}
+```bash
 /interface bridge add name=bridge-guest
-{% endhighlight %}
+```
 
 VLAN is a way to represent a network without the need for physical separation. For my configuration, I need to set interface, name, and id. All interfaces are using id 1 by default, but I always keep some gaps between ids and orders just in case I need to add another in between.
-{% highlight bash %}
+```bash
 /interface vlan add interface=wlan1 name=vlan-guest vlan-id=10
-{% endhighlight %}
+```
 
 Since I want separate network I need to configure second DHCP server. The demo is using 192.168.2.0/24 network and assumes the main network is using 192.168.1.0/24.
 
@@ -37,30 +36,30 @@ DHCP configuration needs two things:
 - **DHCP Server** assigned to an interface and using a defined pool;
 
 In my case the interface is the bridge.
-{% highlight bash %}
+```bash
 /ip pool add name=dhcp_guest ranges=192.168.2.2-192.168.2.254
 /ip dhcp-server add address-pool=dhcp_guest disabled=no interface=bridge-guest name=dhcp-vlan-guest
-{% endhighlight %}
+```
 
 Now it's time to add the WLAN interface into the guest bridge:
-{% highlight bash %}
+```bash
 /interface bridge port add bridge=bridge-guest interface=vlan-guest
-{% endhighlight %}
+```
 
 Since I want to have a virtual network I need to assign an IP to the bridge so the bridge can act as a gateway.
-{% highlight bash %}
+```bash
 /ip address add address=192.168.2.1/24 interface=bridge-guest network=192.168.2.0
-{% endhighlight %}
+```
 
 The DHCP server has a pool already, but for a working network, I need to specify the bridge as a gateway:
-{% highlight bash %}
+```bash
 /ip dhcp-server network add address=192.168.2.0/24 gateway=192.168.2.1
-{% endhighlight %}
+```
 
 Now the hosts connected to the main network will receive IPs in the 192.168.1.0/24 network and the hosts connected to the guest network will receive IPs from 192.168.2.0/24 network. This is great, but the hosts in the two networks are still accessible from each other and I want to stop that with firewall rule:
-{% highlight bash %}
+```bash
 /ip firewall filter add action=drop chain=forward in-interface=bridge-guest out-interface=bridge
-{% endhighlight %}
+```
 
 The goal is achieved. I have automated configuration and router setup takes only a few seconds. I added everything in a script with placeholders in my [GitHub account](https://github.com/georgialexandrov/dotfiles/blob/master/router_configuration){:target="_blank"}.
 
@@ -73,7 +72,7 @@ const config = require(`${process.env.HOME}/.config/dotfiles/config.json`)
 
 var data = fs.readFileSync(`./${arg}`,"utf8");
 console.log(eval('`'+data+'`'))
-{% endhighlight %}
+```
 
 The complete (at least for the router part) `config.json` looks like this:
 {% highlight json %}
@@ -125,9 +124,9 @@ The complete (at least for the router part) `config.json` looks like this:
         ]
     }
 }
-{% endhighlight %}
+```
 
 Now I simply run:
-{% highlight bash %}
+```bash
 node replacer.js router_configuration | bash
-{% endhighlight %}
+```

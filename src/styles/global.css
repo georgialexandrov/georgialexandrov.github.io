@@ -1,0 +1,352 @@
+/* CSS Variables for colors and fonts */
+:root {
+  --font-title: "EB Garamond", serif;
+  --font-regular: "Hind", sans-serif;
+  --font-handwritten: "Gaegu", cursive;
+  --font-source-code: "Source Code Pro", monospace;
+  --light-grey: #fbfbfb;
+  --subtitle: #877e75;
+  --dark-grey: #666;
+  --red: #ce463c;
+}
+
+body {
+  color: #333;
+  font-family: var(--font-regular);
+  margin: 0;
+}
+
+.wrapper {
+  display: grid;
+  max-width: 1200px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: "sidebar content";
+}
+
+aside {
+  background-color: var(--light-grey);
+  text-align: center;
+  min-width: 300px;
+  min-height: 100vh;
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+}
+
+aside a {
+  display: block;
+}
+
+aside p {
+  font-size: 0.9em;
+  color: var(--subtitle);
+  margin: 2em;
+}
+
+aside .profilePic {
+  margin-top: 5em;
+  padding: 0;
+  justify-content: normal;
+}
+
+aside .profilePic img {
+  border-radius: 50%;
+  margin-top: -30px;
+}
+
+aside .profilePic .pointer {
+  width: 90px;
+  margin: auto;
+  border: dashed 2px var(--red);
+  border-color: var(--red) transparent transparent transparent;
+  border-radius: 120%/120px 120px 0 0;
+  transform: rotate(310deg);
+}
+
+aside .profilePic .pointer span {
+  display: block;
+  margin-left: 60px;
+  font-family: var(--font-handwritten);
+  font-size: 1.2em;
+  line-height: 1em;
+  transform: rotate(70deg);
+}
+
+aside .profilePic .pointer .arrow {
+  width: 0;
+  height: 0;
+  margin-left: 7px;
+  margin-top: 10px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #dd4c4f;
+  transform: rotate(60deg);
+}
+
+aside nav a {
+  font-size: 1.1em;
+  font-weight: lighter;
+  color: black;
+  text-decoration: none;
+  text-align: right;
+  text-transform: uppercase;
+  padding-right: 0.2em;
+  line-height: 1.8em;
+  margin-right: 3px;
+}
+
+aside nav a:hover {
+  text-decoration: none;
+  border-right: 3px var(--red) solid;
+  padding-right: 0.2em;
+  margin-right: 0;
+}
+
+aside nav a.active {
+  text-decoration: none;
+  border-right: 3px var(--red) solid;
+  padding-right: 0.2em;
+  margin-right: 0;
+}
+
+aside .social-links {
+  margin: 1em 0;
+}
+
+aside .social-links a {
+  display: inline;
+}
+
+aside .social-links a img {
+  height: 20px;
+}
+
+main {
+  padding: 4em 3em 0 3em;
+  grid-area: content;
+  min-width: 0; /* Allow content to shrink */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+main img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+footer {
+  font-size: 10pt;
+  color: var(--dark-grey);
+  text-align: center;
+  margin: 1em 0;
+  margin-top: 4em;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+h1 {
+  font-family: var(--font-title);
+  line-height: 1em;
+  border-bottom: 3px var(--red) solid;
+  margin-bottom: 0;
+  font-size: 2.77em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  content: "–";
+  font-weight: bold;
+  color: var(--red);
+  margin-right: 1em;
+  margin-left: 0;
+}
+
+a {
+  color: #666;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #efefef;
+}
+
+.highlight {
+  background-color: var(--light-grey);
+  padding: 1em 2em;
+  writing-mode: horizontal-tb;
+  overflow-x: auto;
+}
+
+.highlight pre,
+.highlight tt,
+.highlight code {
+  font-family: "Source Code Pro", monospace;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Styles for Astro markdown code blocks */
+pre {
+  background-color: var(--light-grey);
+  padding: 1em 2em;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+pre code {
+  font-family: var(--font-source-code);
+  font-size: 0.9em;
+  background: none;
+  padding: 0;
+}
+
+/* Inline code */
+code {
+  font-family: var(--font-source-code);
+  background-color: var(--light-grey);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Work experience styles */
+.static .companies {
+  display: flex;
+  flex-direction: column;
+}
+
+.static .companies .date {
+  font-family: "EB Garamond", serif;
+  background: var(--red);
+  font-size: 0.9em;
+  color: white;
+  width: 5em;
+  text-align: center;
+  padding: 0.2em;
+}
+
+.static .companies .company {
+  display: flex;
+  flex-direction: row;
+}
+
+.static .companies .company .period {
+  flex: 1;
+  border-left: 2px dashed var(--red);
+  margin-left: 2.6em;
+}
+
+.static .companies .company .description {
+  flex: 10;
+}
+
+.static .companies .company .description h2 {
+  font-size: 1.6em;
+  margin-top: 0;
+}
+
+.static .companies .company .description .technologies {
+  font-family: "EB Garamond", serif;
+  text-align: right;
+  margin-left: 30%;
+}
+
+.static .companies .company .description .technologies .tech {
+  background: var(--dark-grey);
+  white-space: nowrap;
+  color: white;
+  line-height: 1.6em;
+  margin: 0 0.1em;
+  padding: 0 0.5em;
+}
+
+/* Blog styles */
+.post-header .post-title {
+  font-family: var(--font-title);
+}
+
+.post-header .post-info {
+  text-align: right;
+}
+
+.post-header .post-info .dt-published {
+  background: var(--red);
+  color: white;
+  font-weight: bold;
+  padding: 0.2em;
+  font-family: "EB Garamond", serif;
+}
+
+.post-header .post-info .tags {
+  margin-right: 200px;
+}
+
+.blog a {
+  text-decoration: none;
+}
+
+.blog .post-header {
+  margin: 1em 0 2em 0;
+}
+
+.blog .post-header a {
+  color: black;
+  font-size: 2em;
+  display: block;
+}
+
+.blog .post-content a {
+  color: var(--red);
+}
+
+.blog .post-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile styles */
+@media (max-width: 950px) {
+  .wrapper {
+    flex-direction: row;
+    grid-template-columns: 1fr;
+    grid-template-areas: "sidebar" "content";
+  }
+
+  aside {
+    min-height: auto;
+    padding: 0;
+  }
+
+  aside nav a {
+    display: inline;
+    text-align: center;
+  }
+
+  aside nav a:hover,
+  aside nav a.active {
+    border-right: 0;
+    border-bottom: 2px var(--red) solid;
+  }
+
+  main {
+    padding: 1em;
+  }
+}

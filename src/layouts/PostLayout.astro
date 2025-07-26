@@ -1,0 +1,46 @@
+---
+import Layout from './Layout.astro';
+
+export interface Props {
+  title: string;
+  date: Date;
+  tags?: string[];
+}
+
+const { title, date, tags } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+
+function calculateReadTime(content: string): number {
+  const words = content.split(/\s+/).length;
+  return Math.ceil(words / 150);
+}
+---
+
+<Layout title={title}>
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <h1 class="post-title p-name" itemprop="name headline">{title}</h1>
+      <div class="post-info">
+        <time class="dt-published" datetime={date.toISOString()} itemprop="datePublished">
+          {formatDate(date)}
+        </time>
+        {tags && tags.length > 0 && (
+          <div class="tags">
+            {tags.map(tag => <span class="tag">#{tag}</span>)}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+      <slot />
+    </div>
+  </article>
+</Layout>

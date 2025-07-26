@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Map chromosome positions to SNP"
 date:   2019-02-05 17:18:32 +0200
 tags: [genomics]
@@ -14,10 +13,10 @@ Luckily, Sequencing.com provide the same data in gzipped VCF format which allowe
 
 VCF (Variant Call Format) is just a text format with tab separated values.
 
-{% highlight csv %}
+```csv
 #CHROM  POS ID  REF ALT QUAL  FILTER  INFO  FORMAT  56001801066947A
 chr1  13116 . T G 479.77  PASS  AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.63;QD=34.24;SOR=2.670;VQSLOD=2.23;culprit=QD GT:AD:DP:GQ:PGT:PID:PL  1/1:0,12:12:36:1|1:13116_T_G:508,36,0
-{% endhighlight %}
+```
 
 The ID column is supposed to be the SNP id, but unfortunately, it was not provided in the export.
 
@@ -29,9 +28,9 @@ I have 256GB HDD so extraction of the files was not an option. Here the power of
 
 I started with `bzcat` which can not only extract the content of an archive, but also stream the content instead of saving it into a new file. The following command will take the first line of the archive and print it to the terminal.
 
-{% highlight bash %}
+```bash
 $ bzcat refsnp-chr1.json.bz2 | head -1
-{% endhighlight %}
+```
 
 The JSON object is quite big so I won't paste it here, but I need few things from it: 
 
@@ -40,7 +39,7 @@ The JSON object is quite big so I won't paste it here, but I need few things fro
 
 For extracting the positions I wrote a python script:
 
-{% highlight python %}
+```python
 import sys, re;
 
 for line in sys.stdin:
@@ -49,66 +48,66 @@ for line in sys.stdin:
   if positions:
     for position in list(set(positions)):
       print(position+","+ snp_id[0])
-{% endhighlight %}
+```
 
 I named the file extract_position_and_snp.py and now I can execute:
 
-{% highlight bash %}
+```bash
 $ bzcat refsnp-chr1.json.bz2 | head -1 | python3 extract_position_and_snp.py
 122423694,236
 119661416,236
-{% endhighlight %}
+```
 
 Now I got the response I am looking for. The reason I wanted comma separated file is that I am using PostgreSQL for now and the `psql` terminal command supports loading data from CSV which is way faster than importing through SQL.
 
 The next step is to generate files for import. Unix supports redirection of the output from the command to a file so now I can just remove the head command and stream the entire file line by line through the python script and save the output to a file called 1_pos_snp.csv where 1 is the chromosome.
 
-{% highlight bash %}
+```bash
 $ bzcat refsnp-chr1.json.bz2| python3 insert.py > 1_pos_snp.csv
-{% endhighlight %}
+```
 
 The script takes quite a lot of time, but I spread the execution into two machines and a day later I got the files for the all 24 chromosomes.
 
 The CSV files are between 1.1 and 2.4 gigabytes where the first chromosome has 106 708 907 lines. The lines count can be checked with another useful Unix command `wc -l` ([w]ord [c]ount with parameter [l]ines). I was checking the script execution from time to time just to be sure something is happening by looking at how many lines are saved in the file.
 
-{% highlight bash %}
+```bash
 $ wc -l 1_pos_snp.txt
  106708907 1_pos_snp.txt
-{% endhighlight %}
+```
 
 Now after I have the 24 files for the 24 chromosomes it's time to import them into the database. I created a table for each chromosome. Not sure if this helps for the performance but at least I can have one column short since the chromosome is known from the name of the table instead of a column.
 
-{% highlight sql %}
+```sql
 CREATE TABLE public.refsnp_1 (
   snp_id bigint NOT NULL,
   "position" bigint NOT NULL
 );
-{% endhighlight %}
+```
 
 Instead of changing the table names manual in the copy command for every file I wrote a script which allowed me to just pass the name of the .csv file and extract the chromosome from the filename.
 
-{% highlight bash %}
+```bash
 #!/bin/sh
 
 CHROMOSOME=$(echo $1 | cut -d'_' -f 1)
 
 psql "postgresql://username:password@server/database" -c "\COPY refsnp_$CHROMOSOME(position, snp_id) FROM '$1' DELIMITER ',' CSV;"
-{% endhighlight %}
+```
 
 The import is quite fast. It took more time to transfer the file from my computer to the remote machine than the import.
 
 For my genome I need to map position and get the snp_id. So I added indexes to position column of all the tables:
 
-{% highlight sql %}
+```sql
 CREATE INDEX "position_refsnp_1" ON public.refsnp_1 USING btree ("position");
-{% endhighlight %}
+```
 
 This takes a while, but this time will be saved when I run the update query.
 
 After the data for mapping is ready I can import my genome into the same database. First I will also use the Unix commands and python script to get what I need from the VCF file.
 
 
-{% highlight python %}
+```python
 import sys
 
 for line in sys.stdin:
@@ -128,32 +127,32 @@ for line in sys.stdin:
   my_2 = reference if data[2] == '0' else alternative
 
   print("\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\",{},\"{}\",\"{}\",\"{}\",\"{}\"".format(chromosome, position, reference, alternative, my_1, my_2, quality, filter_, info, format_, data))
-{% endhighlight %}
+```
 
 The only additional logic for the conversion to comma separated values is to read the genotype. The [VCF specification](https://samtools.github.io/hts-specs/VCFv4.2.pdf){:target="blank"} specifies that the positions are represented in the last column with 1 or 0. 
-{% highlight quote %}
+```
 The allele values are 0 for the reference allele (what is in the REF field), 1 for the first allele listed in ALT, 2 for the second allele list in ALT and so on
-{% endhighlight %}
+```
 
 In my case for the first line in my results, I have G/G for position 13116.
 
-{% highlight csv %}
+```csv
 #CHROM  POS ID  REF ALT QUAL  FILTER  INFO  FORMAT  56001801066947A
 chr1  13116 . T G 479.77  PASS  AC=2;AF=1.00;AN=2;DP=12;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=22.63;QD=34.24;SOR=2.670;VQSLOD=2.23;culprit=QD GT:AD:DP:GQ:PGT:PID:PL  1/1:0,12:12:36:1|1:13116_T_G:508,36,0
-{% endhighlight %}
+```
 
 
 The processing is another example of the Unix power.
 
-{% highlight python %}
+```python
 $ cat ~/my_genome.snp.vcf | grep "^[^#]" | python3 import_vcf.py > genome.csv
-{% endhighlight %}
+```
 
 The VCF file starts with around 100 lines of comments which are filtered out by the grep command.
 
 Importing the genome is done in the same way as importing the mapping above. I created a table in the database:
 
-{% highlight sql %}
+```sql
 CREATE TABLE public.my_genome (
   id integer NOT NULL,
   chromosome character varying(2),
@@ -169,20 +168,20 @@ CREATE TABLE public.my_genome (
   data character varying,
   snp_id bigint
 );
-{% endhighlight %}
+```
 
 The import is quite simple and way faster since I have just around 3.2 million rows in my genome.
-{% highlight bash %}
+```bash
 #!/bin/sh
 
 psql "postgresql://user:password@server/database" -c "\COPY my_genome(chromosome,position,reference_allele,alternative_allele,my_1,my_2,quality,filter,info,format,data) FROM '$1' DELIMITER ',' CSV;"
-{% endhighlight %}
+```
 
 Now I just need to update the SNP ids in `my_genome` table:
 
-{% highlight sql %}
+```sql
 update my_genome set snp_id=(select snp_id from refsnp_1 where my_genome."position"=refsnp_1."position" limit 1) where snp_id is null and my_genome.chromosome='1';
-{% endhighlight %}
+```
 
 Note that there can be SNP ids in the same positions in different chromosomes so you need to specify the chromosome from `my_genome` table. The need for limit 1 is explained at the end.
 
@@ -190,21 +189,21 @@ Doing this for all the chromosomes I have just 5945 rows not mapped with SNP id.
 
 Great! Not I can query my SNPs and see the genotype:
 
-{% highlight sql %}
+```sql
 # select chromosome, position, concat('rs', snp_id) as snp, concat(my_1, my_2) as genotype from my_genome where position=13116;
  chromosome | position |     snp    | genotype
 ------------+----------+------------+---------
  1          |    13116 | rs62635286 | GG
 (1 row)
-{% endhighlight %}
+```
 
 I checked few SNP ids with the data viewer app in sequencing.com and it looks correct.
 
 There is just one problem. One snp SNP be in more than one position. I decided to check if I have such data in the database.
 
-{% highlight sql %}
+```sql
 select snp_id from my_genome group by snp_id having count(snp_id) > 1;
-{% endhighlight %}
+```
 
 It turns out I have 2747 duplicated SNP ids. Checking the data viewer app turns out that I am not having the same SNP as Sequencing.com. So the question is how to chose the right SNP when there can be two SNPs in the same location?
 

@@ -1,0 +1,41 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  style?: string;
+}
+
+const { 
+  title = "Georgi Alexandrov's website",
+  description = "Georgi Alexandrov - software developer, homebrewer, a good man",
+  style = ""
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Gaegu:100,400|Hind:300,700|EB+Garamond' rel='stylesheet' type='text/css' />
+    <meta name="description" content={description}>
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class={style}>
+    <div class="wrapper">
+      <Sidebar currentPath={Astro.url.pathname} />
+      <main>
+        <slot />
+        <footer>
+          <p>(<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank">cc</a>) Georgi Alexandrov 2003-2019</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

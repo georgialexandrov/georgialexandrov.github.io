@@ -1,7 +1,6 @@
 ---
-layout: post
-title:  "Jekyll and GitHub Pages"
-date:   2018-07-29 15:27:04 +0300
+title: "Jekyll and GitHub Pages"
+date: 2018-07-29 15:27:04 +0300
 tags: [jekyll, github-pages]
 ---
 
