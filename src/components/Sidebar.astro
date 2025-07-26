@@ -1,9 +1,6 @@
 ---
-export interface Props {
-  currentPath?: string;
-}
-
-const { currentPath = "/" } = Astro.props;
+// Use Astro.url.pathname directly instead of prop
+const currentPath = Astro.url.pathname;
 ---
 
 <aside>
@@ -28,6 +25,7 @@ const { currentPath = "/" } = Astro.props;
   <nav>
       <a
       href="/"
+      data-astro-reload
       class={currentPath === "/" || currentPath?.startsWith("/blog")
         ? "active"
         : ""}
@@ -36,19 +34,28 @@ const { currentPath = "/" } = Astro.props;
     </a>
     <a
       href="/work-experience"
-      class={currentPath === "/work-experience" ? "active" : ""}
+      data-astro-reload
+      class={currentPath === "/work-experience/"
+        ? "active"
+        : ""}
     >
       Work Experience
     </a>
-    <a href="/education" class={currentPath === "/education" ? "active" : ""}>
+    <a href="/education" data-astro-reload class={currentPath === "/education/" ? "active" : ""}>
       Education
     </a>
     <a
       href="/technologies"
-      class={currentPath === "/technologies" ? "active" : ""}
+      data-astro-reload
+      class={currentPath === "/technologies/"
+        ? "active"
+        : ""}
     >
       Technologies
     </a>
+  
+  </nav>
+      
   
   </nav>
 </aside>
