@@ -40,7 +40,7 @@ aside a {
 aside p {
   font-size: 0.9em;
   color: var(--subtitle);
-  margin: 2em;
+  margin: 1em 0.8em;
 }
 
 aside .profilePic {
