@@ -1,52 +1,90 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Technologies - Georgi Alexandrov" style="static">
   <h1>Technologies</h1>
-  <p>During my experience, I worked with php, node.js, and java. I also supported many systems in production.</p>
 
-  <h2>Node.js</h2>
-  <ul>
-    <li><strong>Hapi</strong> is web framework I use the most in node.js;</li>
-    <li><strong>Mocha</strong> is great coffee and great framework which I use whenever I can;</li>
-    <li><strong>React</strong> is what I choose when I need front end;</li>
-    <li><strong>Redux</strong> with React is like Batman and Robin;</li>
-    <li><strong>Immutable</strong> saves me when working with Redux;</li>
-  </ul>
+  <p>
+    My technology choices center on architectural patterns that reduce cognitive
+    overhead while maintaining flexibility. After building systems that need to
+    evolve under changing requirements, I've learned that the most valuable
+    tools embed good organizational patterns rather than just providing more
+    features.
+  </p>
 
-  <h2>PHP</h2>
-  <ul>
-    <li><strong>cakePHP</strong> was the first framework I used for php;</li>
-    <li><strong>Laravel</strong> is my favorite php framework;</li>
-    <li><strong>Doctrine</strong> is nice ORM when such need to be used in php;</li>
-    <li><strong>composer</strong> is the most important thing for last the 10 years in php world;</li>
-    <li><strong>phpUnit</strong> is a must for every project;</li>
-    <li><strong>Symfony</strong> components I use anytime I can;</li>
-  </ul>
+  <h2>Development Philosophy</h2>
 
-  <h2>Java</h2>
-  <ul>
-    <li><strong>Spring</strong> was the first framework I ever used back in 2007;</li>
-    <li><strong>Play</strong>! Framework was the last web framework I used when I was in the Java world;</li>
-    <li><strong>jUnit</strong> saved me many times on many projects;</li>
-    <li><strong>Hibernate</strong> was used by me for a project which was searching in a database with 600k users;</li>
-  </ul>
+  <p>
+    <strong>Full-Stack ownership</strong> I've learned that full-stack ownership
+    works better than role separation, though it took me years to understand why.
+    Early in my career, I'd write beautiful backend APIs only to discover weeks later
+    that the frontend team needed completely different data structures, or that my
+    elegant caching logic was useless because deployment constraints made it impossible
+    to configure properly.
+  </p>
+  <p>
+    The problem isn't individual competence—it's information flow. When you hand
+    off work between specialists, you're essentially playing a game of telephone
+    with technical requirements. Each handoff loses context about why decisions
+    were made and what constraints actually matter.
+  </p>
+  <p>
+    Now I prefer developers who can take a feature from requirements discussion
+    through Docker deployment and production monitoring. Not because they need
+    to be experts at everything, but because ownership of the complete cycle
+    creates immediate feedback loops. When you're the one getting paged at 2 AM
+    because your caching strategy is thrashing the database, you learn to think
+    differently about performance optimizations during development.
+  </p>
+  <p>
+    This connects to the Software Craftsmanship idea that developers should
+    engage with the "why" behind requirements. When you're responsible for
+    production behavior, you naturally ask better questions during planning
+    because you'll own the consequences. Teams structured this way develop
+    better technical judgment because decisions have immediate, visible outcomes
+    rather than getting lost in handoff abstractions.
+  </p>
 
-  <h2>OS</h2>
-  <ul>
-    <li><strong>MacOS</strong> is my first choice for a work machine;</li>
-    <li><strong>Linux</strong> (centOS or Ubuntu) is what I choose for hosting when I support systems in production;</li>
-    <li><strong>Windows</strong> is something I prefer to avoid;</li>
-  </ul>
+  <p>
+    <strong>NestJS for Backend Architecture</strong> NestJS provides the architectural
+    patterns I value most: dependency injection for clean component boundaries and
+    a module system that can mirror Domain-Driven Design bounded contexts. This brings
+    code organization closer to the actual business domain, making the system easier
+    to understand and maintain for both current and future team members.
+  </p>
 
-  <h2>Other</h2>
-  <ul>
-    <li><strong>Jenkins</strong> is CI which I implemented to build and deploy java on Linux, .net on windows worker and iOS for running automated tests on devices;</li>
-    <li><strong>SonarQube</strong> is my choice for implementing continuous improvement techniques and action plans for PHP and Java;</li>
-    <li><strong>Capistrano</strong> is what I used for deploying PHP applications in production;</li>
-    <li><strong>Puppet</strong> is a solution for provisioning which I choose to implement provisioning for 80+ servers in production;</li>
-    <li><strong>Vagrant</strong> provisioned with Puppet is something I used before Docker was cool;</li>
-    <li><strong>Docker</strong> will be my solution instead of vagrant if I need to fix "work on my machine" problem now;</li>
-  </ul>
+  <p>
+    <strong>React for Frontend Simplicity</strong> React's component model aligns
+    with how I think about maintainable interfaces. The framework's emphasis on functional
+    components and predictable state management reduces the cognitive overhead of
+    understanding UI behavior. When components are truly isolated, interface complexity
+    scales gracefully without tight coupling between presentation and business logic.
+  </p>
+  <p>
+    <strong>AI-Enhanced Development Workflows</strong> I'm currently leading AI transformation
+    initiatives focused on maintaining context continuity from client meetings through
+    development and QA processes. This isn't about replacing human judgment but augmenting
+    team capabilities with better information flow. When AI systems maintain project
+    context across phases, teams make more informed decisions and catch inconsistencies
+    earlier in the development cycle.
+  </p>
+  <p>
+    My current SDLC implementation integrates logging, monitoring, alerting, and
+    CI/CD through GitHub Actions. This isn't just about automation—it's about
+    creating feedback loops that surface issues before they impact users. When
+    development workflows include observability from the beginning, teams
+    develop better intuition about system behavior and can make more informed
+    architectural decisions.
+  </p>
+
+  <h2>Why These Choices Matter</h2>
+  <p>
+    I prioritize technologies that create compound advantages over time. When
+    your development stack makes testing easier, code reviews more meaningful,
+    and deployments more reliable, these improvements combine into significant
+    differences in team capability and system reliability. The goal is building
+    development environments where good practices become the path of least
+    resistance.
+  </p>
 </Layout>
