@@ -3,41 +3,39 @@ title: "AI Resistance is Just the Latest Rerun of an Old Show"
 date: 2025-07-26 14:30 +0200
 ---
 
-In 2007, a colleague told me that using an IDE made me a bad developer. She wrote Java in Notepad, manually indented every line, and built projects by hand. "Real developers," she insisted, "need to understand every aspect of their code." Fast forward to 2025, and I'm hearing the same argument about AI coding assistants: "It's as stupid as a drunk monkey" a senior engineer at a major company told me recently. They have Copilot licenses sitting unused because the team doesn't believe in its value.
+In 2007, a colleague told me that using an IDE made me a bad developer. She wrote Java in Notepad, manually indented every line, and built projects by hand. "Real developers," she insisted, "need to understand every aspect of their code." Fast forward to 2025, and I'm hearing familiar refrains about AI coding assistants. "The output is unreliable," developers tell me. "It writes code I wouldn't trust." Teams with Copilot licenses sit unused, not because the tool doesn't work, but because the resistance feels familiar.
 
-This isn't about AI. This is about a pattern as old as technological progress itself—and more importantly, it's about how our professional identity becomes entangled with our methods.
+This isn't about AI. This is about a pattern as old as technological progress itself—and more importantly, it's about how our professional identity becomes tied to our methods.
 
 Every generation fights the new tool, convinced that shortcuts will destroy their craft. But professional value has never come from doing things the hard way—it comes from solving problems efficiently while maintaining quality. The developers who recognize this pattern early don't just survive technological shifts; they understand that their identity must evolve with their tools.
 
 ## The Identity Feedback Loop
 
-Here's what I've learned from watching skilled professionals resist obviously beneficial tools: our sense of professional worth becomes tied to our methods, not our outcomes. When I write code by hand, I'm not just solving problems—I'm demonstrating my worth, my intelligence, my craft. The AI threatens not just my productivity advantage, but my sense of professional self.
+What I've noticed from watching skilled professionals resist obviously beneficial tools: sometimes our sense of professional worth becomes tied to our methods, not our outcomes. When I write code by hand, I'm not just solving problems—I'm demonstrating my worth, my intelligence, my craft. The AI threatens not just my productivity advantage, but my sense of professional self.
 
 This creates a defensive feedback loop:
 **Identity → Skill Pride → Tool Resistance → Skill Gap → Threatened Identity → Stronger Resistance**. 
 
 The very resistance that feels like protecting our expertise actually prevents us from developing the skills that would truly protect our careers.
 
-Workplace dynamics amplify this trap significantly. In enterprises where individual productivity is less visible than individual expertise demonstration, adopting AI feels existentially risky. What if the tool makes everyone equally productive? What if your years of accumulated syntax knowledge suddenly becomes less valuable? The resistance isn't really about the technology's capabilities—it's about how performance is measured and recognized in that specific organizational system.
+Maybe the fear isn't just that AI will change how we work—could it be that AI might expose the same uncomfortable truth that becomes visible when experienced developers switch companies? Someone who spent years building their identity as a senior expert in one organization discovers they can't produce much in a new environment. The expertise they accumulated was often domain-specific, tied to particular systems, processes, and organizational contexts.
 
-This expertise trap becomes most visible when experienced developers switch companies. Someone who spent years building their identity as a senior expert in one organization discovers they can't produce much in a new environment. The expertise they accumulated was often domain-specific, tied to particular systems, processes, and organizational contexts. What felt like universal technical mastery was actually narrow, context-dependent knowledge that doesn't translate.
-
-This exposes an uncomfortable truth: when our expertise becomes too entangled with specific methods, we mistake familiarity for competence. The fear isn't just that AI will change how we work—it's that AI might expose the gap between our perceived expertise and our actual problem-solving capabilities.
+What felt like universal technical mastery was actually narrow, context-dependent knowledge that doesn't translate. When our expertise becomes too tied to specific methods, we mistake familiarity for competence. Could it be that the real fear is AI might expose this same gap between our perceived expertise and our actual problem-solving capabilities?
 
 Professional survival requires a kind of intentional self-transformation. We must be willing to let go of the expert we were to become the expert we need to be next. In technology, this evolution isn't a philosophical luxury—it's how we stay relevant as the tools change around us.
 
+
 ## The Eternal Resistance Pattern
 
-I've witnessed this cycle repeat throughout my career, and the arguments never change—only the technology does. But this pattern extends far beyond software development.
+I've seen this cycle repeat throughout my career, and the arguments never change—only the technology does. But this pattern extends far beyond software development.
 
-Remember the shift to digital photography? For a generation of professionals, their identity wasn’t just in their artistic eye—it was in the physical craft. The smell of chemicals, the mastery of manual exposure, the magic of watching an image appear in the darkroom. Their expertise was inseparable from these difficult, tactile processes.
+Remember the shift to digital photography? For many professionals, their identity was tied to the physical craft: the smell of chemicals, manual exposure mastery, watching images appear in the darkroom. When digital cameras arrived, the resistance was fierce: "It's soulless button-pushing for amateurs—not real artists who understand light and shadow."
 
-When digital cameras arrived, the resistance was fierce: “It’s soulless button-pushing for amateurs who want instant gratification—not real artists who understand light and shadow.”
+Film photography remains a beautiful craft with devoted practitioners. But when photographers needed to deliver hundreds of edited photos on tight deadlines, or journalists had to file breaking news stories instantly, digital photography's speed became the deciding factor.
 
-The masters who adapted discovered their value was never in the darkroom chemistry—it was in their vision, composition, and storytelling. They applied those core skills to more efficient tools and produced even better work.
-The photographers who couldn’t separate their identity from their methods became irrelevant, leaving film as a beautiful but nostalgic niche.
+The same applies to software development. Elegant, hand-crafted code remains a valuable skill for core algorithms, performance-critical sections, or complex business logic. However, when provided with correct examples and proper context, LLMs can produce code of similar quality and elegance. For generic and repetitive tasks—CRUD operations, form validation, API endpoints—the patterns are well-established and the solutions are predictable, making them ideal candidates for AI assistance.
 
-In software development, the resistance follows the same script:
+This resistance to new tools isn't unique to AI. Software development has seen this pattern repeat throughout its history:
 
 **Early 2000s: The Framework Wars**
 When I started programming, using frameworks was considered cheating. "Real developers write everything from scratch," the purists declared. "Frameworks give you too much ready-made code—you don't understand the architecture. Plus, they make programs slower." The resistance was passionate, the adoption inevitable.
