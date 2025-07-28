@@ -59,14 +59,14 @@ Reliability in AI output isn't a fixed trait—it's shaped by how clearly you de
 
 **"It's an Unpredictable Black Box"** This is a trust issue. Developers worry about relying on code they didn't write or fully understand. But that concern is based on a false binary: either full control or blind faith.
 
-In reality, AI collaboration operates on a spectrum. You choose the level of delegation—from autocomplete to implementation. Treat it like a junior engineer: provide structure, review the output, and guide as needed. You remain the architect, deciding how much to offload and when to step in.
+In reality, AI collaboration operates in different modes. You choose the level of delegation—from autocomplete to implementation. Treat it like a junior engineer: provide structure, review the output, and guide as needed. You remain the architect, deciding how much to offload and when to step in.
 
 **"This Will Lead to Skill Erosion"** This concern comes from worrying that widespread AI reliance will cause the industry to lose the ability to write code from scratch, similar to how calculators might affect mental math skills across society.
 
 What's ironic is that developers already rely on massive abstractions they don't fully control—frameworks, garbage collectors, cloud platforms. The resistance isn't to abstraction itself—it's to unfamiliar abstraction not yet mastered. Like a surgeon who uses robotic assistance for precision but retains manual skills for emergencies, developers maintain core competencies while using AI for efficiency. Developer value doesn't disappear with AI—it moves up the abstraction stack. When AI handles routine implementation, mental energy shifts to problems that genuinely require human insight. 
 Software engineering expertise evolves from keystrokes to architecture, from implementation to orchestration.
 
-## The AI Collaboration Spectrum
+## The AI Interaction Modes
 
 Most resistance comes from thinking AI adoption is an all-or-nothing decision. But that's a false choice.
 
@@ -74,7 +74,7 @@ Think back to the early days of frameworks. The developers who adopted them earl
 
 The same compound effect is happening now with AI, only faster. When routine tasks are handled by AI, a developer naturally starts writing clearer specifications. The very act of preparing good context is an act of design, forcing a more structured implementation plan and clearer architectural thinking upfront. This leads to stronger design instincts, and feedback becomes a daily loop, not a final step.
 
-This higher level of thinking is enabled by a toolkit of new collaborative modes. Understanding this spectrum is the key, because it reveals that AI adoption isn't an "all-or-nothing" choice. It's about matching the right tool to the task, like a craftsman selecting the right tool from their workshop, while always remaining in control of the process.
+This higher level of thinking is enabled by a toolkit of new collaborative modes. Understanding these interaction modes is the key, because it reveals that AI adoption isn't an "all-or-nothing" choice. It's about matching the right tool to the task, like a craftsman selecting the right tool from their workshop, while always remaining in control of the process.
 
 - **Autocomplete Mode:** AI suggests completions as you type — translates your brief intent (e.g., a function name) into immediate implementation.
 - **Chat Mode:** Conversational problem-solving with AI — acts as an interactive rubber duck, not just listening but helping to sharpen your logic.
