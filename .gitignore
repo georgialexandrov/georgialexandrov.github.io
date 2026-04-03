@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# slide sources (only dist deployed via public/talks/)
+wip/

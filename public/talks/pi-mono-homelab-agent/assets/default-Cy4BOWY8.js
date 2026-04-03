@@ -1,0 +1,1 @@
+import{o as t,e as o,i as s}from"./modules/vue-CaezaP5S.js";import{u as l}from"./slidev/context-C5EPkciN.js";const a={class:"slidev-layout",style:{display:"flex","flex-direction":"column",height:"100%"}},_={__name:"default",setup(r){return l(),(e,i)=>(t(),o("div",a,[s(e.$slots,"default")]))}};export{_};
